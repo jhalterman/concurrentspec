@@ -31,7 +31,6 @@ Block the main thread while waiting for an assertion in a worker thread and resu
 
 Handle a failed assertion:
 
-    @Test(expected = AssertionError.class)
     public void shouldFail() {
 	  intercept[AssertionError] {	
         new Thread(new Runnable() {
