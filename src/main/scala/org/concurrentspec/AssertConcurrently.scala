@@ -28,8 +28,8 @@ import org.scalatest.BeforeAndAfterEach
   * class MyTest extends FunSuite with AssertConcurrently {
   * test("assertAndResume") {
   * new Thread(new Runnable() {
-  * public void run() {
-  * threadAssertTrue(true);
+  * def run() {
+  * threadAssertTrue(true)
   * resume();
   * }
   * }).start();
@@ -56,7 +56,7 @@ trait AssertConcurrently extends BeforeAndAfterEach { this: Suite =>
     */
   def threadAssertEquals(x: Any, y: Any) {
     try {
-      assertEquals(x, y);
+      assertEquals(x, y)
     } catch {
       case e: AssertionError => threadFail(e)
     }
@@ -66,7 +66,7 @@ trait AssertConcurrently extends BeforeAndAfterEach { this: Suite =>
     */
   def threadAssertFalse(b: Boolean) {
     try {
-      assertFalse(b);
+      assertFalse(b)
     } catch {
       case e: AssertionError => threadFail(e)
     }
@@ -76,7 +76,7 @@ trait AssertConcurrently extends BeforeAndAfterEach { this: Suite =>
     */
   def threadAssertNotNull(o: Any) {
     try {
-      assertNotNull(o);
+      assertNotNull(o)
     } catch {
       case e: AssertionError => threadFail(e)
     }
@@ -145,7 +145,7 @@ trait AssertConcurrently extends BeforeAndAfterEach { this: Suite =>
     */
   protected def sleep(sleepDuration: Long) {
     try {
-      Thread.sleep(sleepDuration);
+      Thread.sleep(sleepDuration)
       throw new TimeoutException(TIMEOUT_MESSAGE)
     } catch {
       case ignored: InterruptedException =>
@@ -180,7 +180,7 @@ trait AssertConcurrently extends BeforeAndAfterEach { this: Suite =>
     */
   protected def threadWait() {
     if (Thread.currentThread() != mainThread)
-      throw new IllegalStateException("Must be called from within the main test thread");
+      throw new IllegalStateException("Must be called from within the main test thread")
 
     this.synchronized {
       while (true) {

@@ -21,7 +21,7 @@ Block the main thread while waiting for an assertion in a worker thread and resu
 
     test("shouldSucceed") {
       new Thread(new Runnable() {
-        public void run() {
+        def run() {
           threadAssertTrue(true)
           resume()
         }
@@ -31,14 +31,14 @@ Block the main thread while waiting for an assertion in a worker thread and resu
 
 Handle a failed assertion:
 
-    public void shouldFail() {
+    test("shouldFail") {
 	  intercept[AssertionError] {	
         new Thread(new Runnable() {
-          public void run() {
-            threadAssertTrue(false);
+          def run() {
+            threadAssertTrue(false)
           }
-        }).start();
-        threadWait(0);
+        }).start()
+        threadWait(0)
       }
     }
 
@@ -47,10 +47,9 @@ TimeoutException occurs if resume is not called before the wait duration is exce
 	test("sleepShouldSupportTimeouts") {
 	  intercept[TimeoutException] {
 	    new Thread(new Runnable() {
-	      def run() {
-	      }
-	    }).start();
-	    sleep(500);
+	      def run() { }
+	    }).start()
+	    sleep(500)
 	  }
 	}
 
@@ -60,10 +59,10 @@ Block the main thread while waiting for n number of resume calls:
 	  new Thread(new Runnable() {
 	    def run() {
 	      for (i <- 0 until 5)
-	        resume();
+	        resume()
 	    }
-	  }).start();
-	  threadWait(500, 5);
+	  }).start()
+	  threadWait(500, 5)
 	}
 
 ## References

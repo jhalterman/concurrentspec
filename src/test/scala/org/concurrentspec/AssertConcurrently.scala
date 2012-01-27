@@ -17,10 +17,10 @@ class AssertConcurrentlyTest extends FunSuite with AssertConcurrently {
   test("waitShouldSupportResume") {
     new Thread(new Runnable() {
       def run() {
-        resume();
+        resume()
       }
-    }).start();
-    threadWait();
+    }).start()
+    threadWait()
   }
 
   /** Should throw an exception.
@@ -30,13 +30,13 @@ class AssertConcurrentlyTest extends FunSuite with AssertConcurrently {
       new Thread(new Runnable() {
         def run() {
           try {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException()
           } catch {
-            case e => threadFail(e);
+            case e => threadFail(e)
           }
         }
-      }).start();
-      threadWait();
+      }).start()
+      threadWait()
     }
   }
 
@@ -46,10 +46,10 @@ class AssertConcurrentlyTest extends FunSuite with AssertConcurrently {
     intercept[AssertionError] {
       new Thread(new Runnable() {
         def run() {
-          threadAssertTrue(false);
+          threadAssertTrue(false)
         }
-      }).start();
-      threadWait(0);
+      }).start()
+      threadWait(0)
     }
   }
 
@@ -59,10 +59,10 @@ class AssertConcurrentlyTest extends FunSuite with AssertConcurrently {
     intercept[TimeoutException] {
       new Thread(new Runnable() {
         def run() {
-          threadAssertTrue(true);
+          threadAssertTrue(true)
         }
-      }).start();
-      threadWait(500);
+      }).start()
+      threadWait(500)
     }
   }
 
@@ -73,8 +73,8 @@ class AssertConcurrentlyTest extends FunSuite with AssertConcurrently {
       new Thread(new Runnable() {
         def run() {
         }
-      }).start();
-      sleep(500);
+      }).start()
+      sleep(500)
     }
   }
 
@@ -83,10 +83,10 @@ class AssertConcurrentlyTest extends FunSuite with AssertConcurrently {
   test("sleepShouldSupportResume") {
     new Thread(new Runnable() {
       def run() {
-        resume();
+        resume()
       }
-    }).start();
-    sleep(500);
+    }).start()
+    sleep(500)
   }
 
   /** Should support assertion errors.
@@ -95,10 +95,10 @@ class AssertConcurrentlyTest extends FunSuite with AssertConcurrently {
     intercept[AssertionError] {
       new Thread(new Runnable() {
         def run() {
-          threadAssertTrue(false);
+          threadAssertTrue(false)
         }
-      }).start();
-      sleep(500);
+      }).start()
+      sleep(500)
     }
   }
 
@@ -108,19 +108,19 @@ class AssertConcurrentlyTest extends FunSuite with AssertConcurrently {
     new Thread(new Runnable() {
       def run() {
         for (i <- 0 until 5)
-          resume();
+          resume()
       }
-    }).start();
-    threadWait(500, 5);
+    }).start()
+    threadWait(500, 5)
   }
 
   test("shouldSupportThreadWait0WithResumeCount") {
     new Thread(new Runnable() {
       def run() {
         for (i <- 0 until 5)
-          resume();
+          resume()
       }
-    }).start();
-    threadWait(0, 5);
+    }).start()
+    threadWait(0, 5)
   }
 }
