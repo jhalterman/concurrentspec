@@ -1,6 +1,10 @@
 # ConcurrentSpec 0.1.0
 
-A simple concurrent unit testing extension for ScalaTest.
+A simple ScalaTest extension for performing concurrent assertions.
+
+## Update
+
+Bill Venners has [adopted](http://groups.google.com/group/scalatest-users/browse_thread/thread/773c62fd2f860ccb) the ConcurrentSpec notion into ScalaTest 1.8 (release forthcoming). See the [Waiter](http://www.artima.com/docs-scalatest-1.8-1.Feb.2012/#org.scalatest.concurrent.Waiter) class.
 
 ## Introduction
 
