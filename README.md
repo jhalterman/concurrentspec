@@ -31,6 +31,7 @@ test("shouldSucceed") {
       resume()
     }
   }).start()
+  
   threadWait(100)
 }
 ```
@@ -45,6 +46,7 @@ test("shouldFail") {
         threadAssertTrue(false)
       }
     }).start()
+    
     threadWait(0)
   }
 }
@@ -58,6 +60,7 @@ test("sleepShouldSupportTimeouts") {
     new Thread(new Runnable() {
       def run() { }
     }).start()
+    
     sleep(500)
   }
 }
@@ -73,6 +76,7 @@ test("shouldSupportMultipleResumes") {
         resume()
     }
   }).start()
+  
   threadWait(500, 5)
 }
 ```
