@@ -23,51 +23,59 @@ If a blocking operation times out before all expected `resume` calls occur, the 
 
 Block the main thread while waiting for an assertion in a worker thread and resume after completion:
 
-    test("shouldSucceed") {
-      new Thread(new Runnable() {
-        def run() {
-          threadAssertTrue(true)
-          resume()
-        }
-      }).start()
-      threadWait(100)
+```scala
+test("shouldSucceed") {
+  new Thread(new Runnable() {
+    def run() {
+      threadAssertTrue(true)
+      resume()
     }
+  }).start()
+  threadWait(100)
+}
+```
 
 Handle a failed assertion:
 
-    test("shouldFail") {
-	  intercept[AssertionError] {	
-        new Thread(new Runnable() {
-          def run() {
-            threadAssertTrue(false)
-          }
-        }).start()
-        threadWait(0)
+```scala
+test("shouldFail") {
+  intercept[AssertionError] { 
+    new Thread(new Runnable() {
+      def run() {
+        threadAssertTrue(false)
       }
-    }
+    }).start()
+    threadWait(0)
+  }
+}
+```
 
 TimeoutException occurs if resume is not called before the wait duration is exceeded:
 
-	test("sleepShouldSupportTimeouts") {
-	  intercept[TimeoutException] {
-	    new Thread(new Runnable() {
-	      def run() { }
-	    }).start()
-	    sleep(500)
-	  }
-	}
+```scala
+test("sleepShouldSupportTimeouts") {
+  intercept[TimeoutException] {
+    new Thread(new Runnable() {
+      def run() { }
+    }).start()
+    sleep(500)
+  }
+}
+```
 
 Block the main thread while waiting for n number of resume calls:
 
-	test("shouldSupportMultipleResumes") {
-	  new Thread(new Runnable() {
-	    def run() {
-	      for (i <- 0 until 5)
-	        resume()
-	    }
-	  }).start()
-	  threadWait(500, 5)
-	}
+```scala
+test("shouldSupportMultipleResumes") {
+  new Thread(new Runnable() {
+    def run() {
+      for (i <- 0 until 5)
+        resume()
+    }
+  }).start()
+  threadWait(500, 5)
+}
+```
 
 ## References
 
